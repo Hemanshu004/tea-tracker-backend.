@@ -6,7 +6,18 @@ import dotenv from "dotenv";
 dotenv.config(); // Load .env
 
 const app = express();
-app.use(cors());
+
+// ✅ Proper CORS configuration
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // local testing
+      "https://tea-tracker-frontend.onrender.com", // your live frontend
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Use the MONGO_URI from .env
